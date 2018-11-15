@@ -11,9 +11,11 @@ namespace PrestoParser
     {
         static void Main(string[] args)
         {
-            Parser test = new Parser();
+            LinearParser test = new LinearParser("dummy filename");
 
-            test.Parse("dummy filename");
+            List<ProductRecord> records = test.Parse();
+
+            // output records to json file here
 
             Console.ReadLine();
         }

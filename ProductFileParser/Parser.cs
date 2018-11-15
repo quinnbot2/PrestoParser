@@ -6,15 +6,24 @@ using System.Threading.Tasks;
 
 namespace ProductFileParser
 {
-    public class Parser
+    public abstract class Parser
     {
-        string filename;
+        protected string Source;
 
-        public void Parse(string inFilename)
+        protected Parser(string inSource)
         {
-            filename = inFilename;
+            Source = inSource;
+        }
 
-            Console.WriteLine("File Parsed");
+        public virtual List<ProductRecord> Parse()
+        {
+            // check that the source is valid
+
+            // loop/read the source in whatever manner is appropriate
+            // collect ProductRecords
+
+            // return record collection
+            return null;
         }
     }
 }
