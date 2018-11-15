@@ -1,0 +1,5 @@
+C:\work\dquinn_Jankbook_9845\PrestoParser\ProductFileParser\bin\Debug\ProductFileParser.dll
+C:\work\dquinn_Jankbook_9845\PrestoParser\ProductFileParser\bin\Debug\ProductFileParser.pdb
+C:\work\dquinn_Jankbook_9845\PrestoParser\ProductFileParser\obj\Debug\ProductFileParser.csprojResolveAssemblyReference.cache
+C:\work\dquinn_Jankbook_9845\PrestoParser\ProductFileParser\obj\Debug\ProductFileParser.dll
+C:\work\dquinn_Jankbook_9845\PrestoParser\ProductFileParser\obj\Debug\ProductFileParser.pdb

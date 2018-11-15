@@ -1,0 +1,8 @@
+C:\work\dquinn_Jankbook_9845\PrestoParser\PrestoParser\bin\Debug\PrestoParser.exe.config
+C:\work\dquinn_Jankbook_9845\PrestoParser\PrestoParser\bin\Debug\PrestoParser.exe
+C:\work\dquinn_Jankbook_9845\PrestoParser\PrestoParser\bin\Debug\PrestoParser.pdb
+C:\work\dquinn_Jankbook_9845\PrestoParser\PrestoParser\bin\Debug\ProductFileParser.dll
+C:\work\dquinn_Jankbook_9845\PrestoParser\PrestoParser\bin\Debug\ProductFileParser.pdb
+C:\work\dquinn_Jankbook_9845\PrestoParser\PrestoParser\obj\Debug\PrestoParser.csprojResolveAssemblyReference.cache
+C:\work\dquinn_Jankbook_9845\PrestoParser\PrestoParser\obj\Debug\PrestoParser.exe
+C:\work\dquinn_Jankbook_9845\PrestoParser\PrestoParser\obj\Debug\PrestoParser.pdb
