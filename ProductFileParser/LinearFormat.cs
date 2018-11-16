@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Globalization;
 
 namespace ProductFileParser
 {
     class LinearFormat
     {
+        // ### make this a dumb lineardata class?
         int ID;
         string Description;
         float SinglePrice;
@@ -24,6 +26,8 @@ namespace ProductFileParser
 
         bool GoodData;
         string RawLine;
+        CultureInfo CultureCurrency;
+        float TaxRate;
 
         public LinearFormat()
         {
@@ -45,6 +49,10 @@ namespace ProductFileParser
             // ### which would allow the LinearFormat to handle many variations of fixed width data layouts
 
             // ### as an excercise, lets validate that start and ends dont overlap.  and that the var name is legit....
+
+            // US Currency is assumed in the example
+            CultureCurrency = new CultureInfo("en-US");
+            TaxRate = 7.775f;
         }
 
         public ProductRecord ParseLine(string inLine)
@@ -60,6 +68,7 @@ namespace ProductFileParser
             return GenerateProductRecord();
         }
 
+        // ### think im going to move this down into segment, hmm....
         bool ParseSegment(LinearDataSegment inSegment)
         {
             // make sure the requested substring actually exists
@@ -84,6 +93,7 @@ namespace ProductFileParser
                 case LinearDataSegment.SegmentType.String:
                     info.SetValue(this, substring);
                     break;
+                // ### check that negative values work...
                 case LinearDataSegment.SegmentType.Currency:
                     float rawCurrency = (float)Convert.ToInt32(substring);
                     info.SetValue(this, rawCurrency / 100f);
@@ -115,11 +125,45 @@ namespace ProductFileParser
             return flags;
         }
 
+        // convert internal data up into PrestoQ product record type
         ProductRecord GenerateProductRecord()
         {
-            // convert internal data up into PrestoQ product record type
+            float calculatorPrice, calculatorPricePromo;
+            string displayPrice, displayPricePromo;
 
-            return new ProductRecord();
+            GeneratePrices(SinglePrice, SplitPrice, SplitCount, out calculatorPrice, out displayPrice);
+            GeneratePrices(SinglePrice_Promo, SplitPrice_Promo, SplitCount_Promo, out calculatorPricePromo, out displayPricePromo);
+
+            ProductRecord newRecord = new ProductRecord(
+                    ID,
+                    Description,
+                    displayPrice,
+                    calculatorPrice,
+                    displayPricePromo,
+                    calculatorPricePromo,
+                    IsWeighed() ? ProductRecord.MeasurementType.PerPound : ProductRecord.MeasurementType.Each,
+                    Size,
+                    IsTaxed() ? TaxRate : 0f
+                );
+
+            return newRecord;
         }
+
+        // choose single or split pricing
+        void GeneratePrices(float inSinglePrice, float inSplitPrice, int inCount, out float outCalculatorPrice, out string outDisplay )
+        {
+            float price = inSinglePrice;
+
+            if (inSplitPrice != 0f)
+                price = inSplitPrice / (float)inCount;
+
+            // ### test a split price that comes out to more than 4 decimal places
+            // ### need to implement half-down rounding, i guess?
+            outCalculatorPrice = (float)Math.Round(price, 4, MidpointRounding.ToEven);
+            outDisplay = outCalculatorPrice.ToString("C", CultureCurrency);
+        }
+
+        bool IsWeighed() { return (Flags & 4) != 0; }
+        bool IsTaxed() { return (Flags & 16) != 0; }
     }
 }

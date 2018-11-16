@@ -16,7 +16,9 @@ namespace PrestoParser
             // ### wrap this in a try catch block to pick up the DataValidation and BadPath exceptions (tbd)
             List<ProductRecord> records = test.Parse();
 
-            // loop over records
+            foreach (ProductRecord r in records)
+                Console.Write(r.OutputPlainText());
+
             // output to console X good, Y bad records parsed
 
             // output records to json file here
