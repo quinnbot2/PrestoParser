@@ -24,7 +24,9 @@ namespace ProductFileParser
         string Size;
         float TaxRate;
 
-        public ProductRecord(int inID, string inDecsription, string inDisplayPrice, float inCalculatorPrice, string inDisplayPrice_Promo, float inCalculatorPrice_Promo, MeasurementType inUnit, string inSize, float inTax)
+        bool GoodRecord;
+
+        public ProductRecord(int inID, string inDecsription, string inDisplayPrice, float inCalculatorPrice, string inDisplayPrice_Promo, float inCalculatorPrice_Promo, MeasurementType inUnit, string inSize, float inTax, bool inGood)
         {
             ID = inID;
             Description = inDecsription;
@@ -35,7 +37,11 @@ namespace ProductFileParser
             UnitofMeasure = inUnit;
             Size = inSize;
             TaxRate = inTax;
+
+            GoodRecord = inGood;
         }
+
+        public bool IsGood() { return GoodRecord; }
 
         public string OutputPlainText()
         {
@@ -50,8 +56,29 @@ namespace ProductFileParser
             output += "UnitofMeasure: " + UnitofMeasure + "\n";
             output += "Size: " + Size + "\n";
             output += "TaxRate: " + TaxRate + "\n";
+            output += "Good: " + GoodRecord + "\n";
 
             output += "\n";
+
+            return output;
+        }
+
+        public string OutputJSON()
+        {
+            string output = "{ ";
+
+            output += "\"ID\" : \"" + ID + "\", ";
+            output += "\"Description\" : \"" + Description + "\", ";
+            output += "\"DisplayPrice\" : \"" + DisplayPrice + "\", ";
+            output += "\"CalculatorPrice\" : \"" + CalculatorPrice + "\", ";
+            output += "\"DisplayPrice_Promo\" : \"" + DisplayPrice_Promo + "\", ";
+            output += "\"CalculatorPrice_Promo\" : \"" + CalculatorPrice_Promo + "\", ";
+            output += "\"UnitofMeasure\" : \"" + UnitofMeasure + "\", ";
+            output += "\"Size\" : \"" + Size + "\", ";
+            output += "\"TaxRate\" : \"" + TaxRate + "\", ";
+            output += "\"Good\" : \"" + GoodRecord + "\"";
+
+            output += " }";
 
             return output;
         }

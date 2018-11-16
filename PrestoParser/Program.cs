@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using ProductFileParser;
 
 namespace PrestoParser
@@ -21,16 +22,29 @@ namespace PrestoParser
 
             try
             {
+                // parse the passed in data file
                 List<ProductRecord> records = prestoParse.Parse();
-                
-                foreach (ProductRecord r in records)
-                    Console.Write(r.OutputPlainText());
 
-                // output to console X good, Y bad records parsed
+                int goodCount = 0;
 
-                // output records to json file here
+                // simple json exporter
+                using (StreamWriter writer = new StreamWriter("./output.json", false))
+                {
+                    writer.WriteLine("{ \"Record\" : [");
 
-                Console.WriteLine("Records Parsed: " + records.Count);
+                    ProductRecord lastRecord = records.Last();
+                    foreach (ProductRecord r in records)
+                    {
+                        writer.WriteLine(r.OutputJSON() + ((r != lastRecord) ? ", " : ""));
+
+                        goodCount += r.IsGood() ? 1 : 0;
+                    }
+
+                    writer.WriteLine("] }");
+                }
+
+                // output good/bad record status to console
+                Console.WriteLine("Records Parsed: " + records.Count + ", Bad Records: " + (records.Count - goodCount));
             }
             catch (ParserException exception)
             {

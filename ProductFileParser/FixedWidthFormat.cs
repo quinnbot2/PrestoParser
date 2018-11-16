@@ -134,7 +134,8 @@ namespace ProductFileParser
                     calculatorPricePromo,
                     IsWeighed() ? ProductRecord.MeasurementType.PerPound : ProductRecord.MeasurementType.Each,
                     Size,
-                    IsTaxed() ? TaxRate : 0f
+                    IsTaxed() ? TaxRate : 0f,
+                    GoodData
                 );
 
             return newRecord;

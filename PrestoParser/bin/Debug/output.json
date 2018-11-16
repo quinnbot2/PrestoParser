@@ -1,0 +1,6 @@
+{ "Record" : [
+{ "ID" : "80000001", "Description" : "Kimchi-flavored white rice                                 ", "DisplayPrice" : "$5.67", "CalculatorPrice" : "5.67", "DisplayPrice_Promo" : "$0.00", "CalculatorPrice_Promo" : "0", "UnitofMeasure" : "Each", "Size" : "     18oz", "TaxRate" : "0", "Good" : "True" }, 
+{ "ID" : "14963801", "Description" : "Generic Soda 12-pack                                       ", "DisplayPrice" : "$6.50", "CalculatorPrice" : "6.5", "DisplayPrice_Promo" : "$5.49", "CalculatorPrice_Promo" : "5.49", "UnitofMeasure" : "Each", "Size" : "  12x12oz", "TaxRate" : "7.775", "Good" : "True" }, 
+{ "ID" : "40123401", "Description" : "Marlboro Cigarettes                                        ", "DisplayPrice" : "$10.00", "CalculatorPrice" : "10", "DisplayPrice_Promo" : "$5.49", "CalculatorPrice_Promo" : "5.49", "UnitofMeasure" : "Each", "Size" : "         ", "TaxRate" : "0", "Good" : "True" }, 
+{ "ID" : "50133333", "Description" : "Fuji Apples (Organic)                                      ", "DisplayPrice" : "$3.49", "CalculatorPrice" : "3.49", "DisplayPrice_Promo" : "$0.00", "CalculatorPrice_Promo" : "0", "UnitofMeasure" : "PerPound", "Size" : "       lb", "TaxRate" : "0", "Good" : "True" }
+] }
