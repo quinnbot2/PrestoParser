@@ -47,7 +47,6 @@ namespace ProductFileParser
                 case SegmentType.String:
                     valueAssigned = inFieldOwner.SetFieldByName(VariableName, substring);
                     break;
-                // ### check that negative values work...
                 case SegmentType.Currency:
                     float rawCurrency = (float)Convert.ToInt32(substring);
                     valueAssigned = inFieldOwner.SetFieldByName(VariableName, rawCurrency / 100f);

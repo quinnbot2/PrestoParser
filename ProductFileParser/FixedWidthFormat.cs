@@ -149,8 +149,6 @@ namespace ProductFileParser
             if (inSplitPrice != 0f)
                 price = inSplitPrice / (float)inCount;
 
-            // ### test a split price that comes out to more than 4 decimal places
-            // ### need to implement half-down rounding, i guess?
             outCalculatorPrice = (float)Math.Round(price, 4, MidpointRounding.ToEven);
             outDisplay = outCalculatorPrice.ToString("C", CultureCurrency);
         }
