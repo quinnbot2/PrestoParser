@@ -15,15 +15,6 @@ namespace ProductFileParser
             Source = inSource;
         }
 
-        public virtual List<ProductRecord> Parse()
-        {
-            // check that the source is valid
-
-            // loop/read the source in whatever manner is appropriate
-            // collect ProductRecords
-
-            // return record collection
-            return null;
-        }
+        public abstract List<ProductRecord> Parse();
     }
 }
