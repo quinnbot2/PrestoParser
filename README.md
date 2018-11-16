@@ -10,9 +10,9 @@ At the highest level the library uses the abstract class Parser to generalize in
 To use the LinearParser, pass it in a source path to the flat file and a FixedWidthFormat.  Again, here Format is accepted as an argument with the assumption that other formats (Variable-width, etc) can also be written.  So long as the formats obey the ILinearFormat interface the parser shouldnt care.
 
 ## FixedWidthFormat
-Fixed Width Formats are parse a string via a series of segments with start and end indexes.  The Format uses this list of segments in order to parse up the individual lines of flat text it is given.  While the current set of segments is from code, the Format handles them generically, meaning that in theory any arrangement of the segments can be used without needing to recompile.
+Fixed Width Formats do the work of parsing a line of string via a series of Segments with start and end indexes.  While the current set of Segments is from code, the Format handles them generically, meaning that in theory any arrangement of the Segments can be used without needing to recompile.
 
-NOTE: The segments mentioned above are assumed to be in ascending order for ease of validation.
+NOTE: The Segments mentioned above are assumed to be in ascending order for ease of validation.
 
 ### Exceptions
 The Parser will throw ParserExceptions in a few situations and calls to Parse should be protected by a try/catch block
