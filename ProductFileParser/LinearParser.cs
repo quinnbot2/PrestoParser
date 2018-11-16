@@ -9,27 +9,29 @@ namespace ProductFileParser
 {
     public class LinearParser : Parser
     {
-        public LinearParser(string inSource) : base(inSource) {}
+        ILinearFormat Format;
+
+        public LinearParser(string inSource, ILinearFormat inFormat) : base(inSource)
+        {
+            Format = inFormat;
+        }
 
         public override List<ProductRecord> Parse()
         {
             // ### should this be a hash table of records on SKU?
             List<ProductRecord> parsedRecords = new List<ProductRecord>();
 
-            // check that the filename is valid
-            if (File.Exists(Source))
-            {
-                // throw an exception here?
-            }
-            
+            // ensure that the filename is valid
+            if (!File.Exists(Source))
+                throw new ParserException("File path: '" + Source + "' does not exist.");
+
             // open the file and parse each line into a ProductRecord
             using (StreamReader fileStream = new StreamReader(Source))
             {
-                LinearFormat format = new LinearFormat();
                 string line;
 
                 while ((line = fileStream.ReadLine()) != null)
-                    parsedRecords.Add( format.ParseLine(line) );
+                    parsedRecords.Add( Format.ParseLine(line) );
             }
             
             return parsedRecords;

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProductFileParser
 {
+    public class ParserException : Exception
+    {
+        public ParserException(string message) : base(message) {}
+    }
+
     public abstract class Parser
     {
         protected string Source;

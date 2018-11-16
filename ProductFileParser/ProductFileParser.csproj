@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LinearDataSegment.cs" />
-    <Compile Include="LinearFormat.cs" />
+    <Compile Include="FixedWidthDataSegment.cs" />
+    <Compile Include="FixedWidthFormat.cs" />
     <Compile Include="LinearParser.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="ProductRecord.cs" />

@@ -11,19 +11,33 @@ namespace PrestoParser
     {
         static void Main(string[] args)
         {
-            LinearParser test = new LinearParser("./input-sample.txt");
+            if (args.Length != 1)
+            {
+                Console.WriteLine("Path argument required, for example:  PrestoParser.exe ./input-sample.txt");
+                return;
+            }
 
-            // ### wrap this in a try catch block to pick up the DataValidation and BadPath exceptions (tbd)
-            List<ProductRecord> records = test.Parse();
+            LinearParser prestoParse = new LinearParser(args[0], new FixedWidthFormat());
 
-            foreach (ProductRecord r in records)
-                Console.Write(r.OutputPlainText());
+            try
+            {
+                List<ProductRecord> records = prestoParse.Parse();
+                
+                foreach (ProductRecord r in records)
+                    Console.Write(r.OutputPlainText());
 
-            // output to console X good, Y bad records parsed
+                // output to console X good, Y bad records parsed
 
-            // output records to json file here
+                // output records to json file here
 
-            Console.WriteLine("Records Parsed: " + records.Count);
+                Console.WriteLine("Records Parsed: " + records.Count);
+            }
+            catch (ParserException exception)
+            {
+                Console.WriteLine("Parsing Failed with error: ");
+                Console.Write(exception.Message);
+            }
+            
             Console.WriteLine("Press enter to continue");
             Console.ReadLine();
         }
